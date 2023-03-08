@@ -22,18 +22,7 @@ import {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
           <div></div>
-          <Text style={{textAlign: "center"}}> <a href="https://buy.stripe.com/cN201y3VJdJ5328dQS"
-                     className='bottomLinkText '
-                     target='_blank'>
-                      🔥 Get Source Code
-                  </a><br/>
-          <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='mailto:hello@cvbox.org'
-                        className='boldText '>
-                        @contact us
-                    </a></Text>
+           <a href="codeminto.com">CodeMinto.com</a>
           <Stack direction={'row'} spacing={6}>
           </Stack>
         </Container>
