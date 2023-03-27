@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Peep from "dailyworkspace";
 import { useProvider } from "../utils/contextProvider";
 import LeftMenu from "./leftMenu";
@@ -17,7 +17,7 @@ const styles = {
 export const PeepsGenerator: React.FC = () => {
   const { state, dispatch } = useProvider();
   const illustrationRef = useRef<HTMLDivElement>(null);
-
+  const [name, setName] = useState("");
   const {
     pickedAccessory,
     pickedBody,
@@ -152,7 +152,20 @@ export const PeepsGenerator: React.FC = () => {
                 isFrameTransparent ? undefined : backgroundBasicColor
               }
             />
+          <form className="inputBox" style={{marginTop: "20px"}}>
+            {/* <label>Enter your name: */}
+              <input
+                type="text" 
+                placeholder="Name"
+                value={name}
+                style={{border: "1px solid gray", borderRadius: "1em", height:"3em", paddingLeft:"10px", marginRight:"10px"}}
+                onChange={(e) => setName(e.target.value)}
+              />
+            {/* </label> */}
+            <button className="saveButton"> Submit </button>
+          </form>
           </div>
+
           <div style={{marginTop: '30vh'}}>
           <LeftMenu />
           <RightMenu />
