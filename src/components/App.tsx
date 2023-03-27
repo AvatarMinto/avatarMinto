@@ -18,6 +18,7 @@ export const PeepsGenerator: React.FC = () => {
   const { state, dispatch } = useProvider();
   const illustrationRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const {
     pickedAccessory,
     pickedBody,
@@ -139,7 +140,7 @@ export const PeepsGenerator: React.FC = () => {
                 width: styles.peepStyle.width * scaleVector,
                 height: styles.peepStyle.height * scaleVector,
                 transform: `${svgTransform?.flip || ""}`,
-                marginTop: '80vh'
+                marginTop: '100vh'
               }}
               accessory={pickedAccessory}
               body={pickedBody}
@@ -152,7 +153,7 @@ export const PeepsGenerator: React.FC = () => {
                 isFrameTransparent ? undefined : backgroundBasicColor
               }
             />
-          <form className="inputBox" style={{marginTop: "20px"}}>
+          <form className="inputBox" style={{marginTop: "20px", justifyContent:"flex-start"}}>
             {/* <label>Enter your name: */}
               <input
                 type="text" 
@@ -162,8 +163,17 @@ export const PeepsGenerator: React.FC = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             {/* </label> */}
-            <button className="saveButton"> Submit </button>
           </form>
+          <form className="inputBox" style={{marginTop: "10px", justifyContent:"flex-start"}} >
+            <input
+              type="text" 
+              placeholder="Description"
+              value={description}
+              style={{border: "1px solid gray", borderRadius: "1em", height:"3em", paddingLeft:"10px", marginRight:"10px"}}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </form>
+            <button className="saveButton" style={{marginLeft:"80%"}}> Submit </button>
           </div>
 
           <div style={{marginTop: '30vh'}}>
