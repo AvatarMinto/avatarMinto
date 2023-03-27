@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Main } from './Main';
 import AllAvatars from "./components/allAvatars";
+import Profile from "./pages/Profile";
 function Router() {
 
   return (
@@ -38,6 +39,16 @@ function Router() {
               element={
                 <Suspense key="/*">
                   <AllAvatars />
+                </Suspense>
+              }
+            />
+            <Route
+              exact
+              path="/profile"
+              key="beta"
+              element={
+                <Suspense key="/*">
+                  <Profile />
                 </Suspense>
               }
             />

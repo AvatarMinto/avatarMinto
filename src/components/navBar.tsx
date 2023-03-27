@@ -14,7 +14,8 @@ import {
   Center,
 } from '@chakra-ui/react';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import NftCard from './NFTCard';
+import Profile from '../pages/Profile';
 export default function NavBar() {
   return (
     <>
@@ -64,7 +65,9 @@ export default function NavBar() {
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <Link  to="/profile">
+                      <p>Username</p>
+                      </Link>
                   </Center>
                   <br />
                 </MenuList>
