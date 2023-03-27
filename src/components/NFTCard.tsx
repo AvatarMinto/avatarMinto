@@ -22,7 +22,7 @@ const NftCard = (props:any) => {
           <Text fontWeight="bold" fontSize="xl">
            1.04 ETH
           </Text>
-          <Button colorScheme='blue'>Sell</Button>
+          <Button colorScheme='blue' onClick={()=>alert("sold!!")}>Sell</Button>
         </Box>
       </Box>
     </Box>
