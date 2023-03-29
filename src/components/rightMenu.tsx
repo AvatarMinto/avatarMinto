@@ -36,7 +36,6 @@ import {
   } from '@chakra-ui/react'
   import { useFormik } from "formik";
   import * as Yup from "yup";
-import { Form } from 'react-router-dom';
 
 const RightMenu = () => {
 	const { address, connector, isConnected } = useAccount()
@@ -48,28 +47,31 @@ const RightMenu = () => {
 	description:''
  }
 
- const formSchema = Yup.object().shape({
-    name: Yup.string()
-      .nullable()
-      .required("This field is required."),
-	  description: Yup.string()
-      .nullable()
-      .required("This field is required."),
-	});
-
+//  const formSchema = Yup.object().shape({
+//     name: Yup.string()
+//       .nullable()
+//       .required("This field is required."),
+// 	  description: Yup.string()
+//       .nullable()
+//       .required("This field is required."),
+// 	});
 
 	const formik :any= useFormik({
-		initialValues: initialFormValues,
-		validationSchema: formSchema,
-		onSubmit: async (values, { setFieldError, resetForm }) => {
-			try {
-
-			}
-			catch(e){
-
-			}
-		},
+		initialValues: {
+			name: '',
+			description: '',
+			price: '',
+			url: '',
+		  },
+		// validationSchema: formSchema,
+		onSubmit: values => {
+			console.log(values)
+			handleSavePngButtonClick();
+			alert(JSON.stringify(values, null, 2));
+		  },
+	 
 	});
+   
   
 	const {
 		pickedAccessory,
@@ -387,7 +389,7 @@ const RightMenu = () => {
 
 	const renderSaveButtons = useMemo(() => {
 		return (
-			<div className='saveButtonWrapper'>
+			<div className='saveButtonWrapper'  style= {{position: "fixed", left:"47vw", top:"90vh" }} >
 				{/* <div className='saveButton' onClick={handleSaveSvgButtonClick}>
 					Save as SVG
 				</div>
@@ -395,9 +397,12 @@ const RightMenu = () => {
 					Save as PNG
 				</div> */}
 
-<div className='saveButton'  onClick={handleSavePngButtonClick}  >
+<div className='saveButton' onClick={onOpen}   >
 {/* onClick={onOpen} */}
+{/* <div onClick={onOpen}> */}
+
 					Mint NFT
+{/* </div> */}
 				</div> 
 
 			</div>
@@ -431,89 +436,133 @@ const RightMenu = () => {
 		return "";
 	  };
 	const modelCOM = useMemo(() => {
+    const showToaster = (e: any) => {
+      e.preventDefault();
+      // TODO open toaster
+      // warning("You have to connect first !", "Attention");
+    };
 
-		
+            // <form
+            //   className="row"
+            //   onSubmit={(e) =>
+            //     address ? formik.handleSubmit(e) : showToaster(e)
+            //   }
+            // >
+            //   <div className="form-group">
+            //     <label className="fs-14px text-black opacity-70">Name</label>
+            //     <input
+			// 	  id="name"
+			// 	  name='name'
+            //       type="text"
+			// 	  onChange={formik.handleChange}
+			// 	  value={formik.values.name}
 
-		const showToaster = (e:any) => {
-			e.preventDefault();
-		// TODO open toaster
-		// warning("You have to connect first !", "Attention");
-		  };
+            //       className={`form-control PR_input re_inputRouded ${getInputClasses(
+            //         "name"
+            //       )}`}
+            //     //   {...formik.getFieldProps("name")}
+            //     />
+            //     {/* {formik.touched.name && formik.errors.name ? (
+            //       <div className="fv-plugins-message-container">
+            //         <div className="fv-help-block text-danger">
+            //           {formik.errors.name}
+            //         </div>
+            //       </div>
+            //     ) : null} */}
+            //   </div>
 
-		return (
-			<Modal isOpen={isOpen} onClose={onClose}>
+            //   <div className="form-group">
+            //     <label className="fs-14px text-white opacity-70">
+            //       Description
+            //     </label>
+            //     <input
+            //        id="description"
+			// 	   name='description'
+			// 	   type="text"
+			// 	   onChange={formik.handleChange}
+			// 	   value={formik.values.description}
+            //       className={`form-control PR_input re_inputRouded ${getInputClasses(
+            //         "description"
+            //       )}`}
+            //     //   {...formik.getFieldProps("description")}
+            //     />
+            //     {/* {formik.touched.description && formik.errors.description ? (
+            //       <div className="fv-plugins-message-container">
+            //         <div className="fv-help-block text-danger">
+            //           {formik.errors.description}
+            //         </div>
+            //       </div>
+            //     ) : null} */}
+            //   </div>
+			//   <button type="submit">Submit</button>
+            // </form>
+    return (
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Details</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          
-		  <form
-              className="row"
-              onSubmit={(e) =>
-                address
-                  ? formik.handleSubmit(e)
-                  : showToaster(e)
-              }
-            >
-
-<div className="form-group">
-                  <label className="fs-14px text-white opacity-70">
-                   Name
-                  </label>
-                  <input
-                    type="text"
-                 
-                    className={`form-control PR_input re_inputRouded ${getInputClasses(
-                      "name"
-                    )}`}
-             
-                    {...formik.getFieldProps("name")}
-                  />
-                  {formik.touched.name && formik.errors.name ? (
-                    <div className="fv-plugins-message-container">
-                      <div className="fv-help-block text-danger">
-                        {formik.errors.name}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-
-				<div className="form-group">
-                  <label className="fs-14px text-white opacity-70">
-                   Description
-                  </label>
-                  <input
-                    type="text"
-                  
-                    className={`form-control PR_input re_inputRouded ${getInputClasses(
-                      "description"
-                    )}`}
-                     {...formik.getFieldProps("description")}
-                  />
-                  {formik.touched.description && formik.errors.description ? (
-                    <div className="fv-plugins-message-container">
-                      <div className="fv-help-block text-danger">
-                        {formik.errors.description}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-
-				</form>
-
-          </ModalBody>
-
+		  <form onSubmit={formik.handleSubmit}>
+			<div style={{ display: "flex" , width: "90%"}}>
+				<label style={{marginTop: "10px",paddingRight:"20px"}}htmlFor="name">Name:</label>
+				<input
+					id="name"
+					name="name"
+					type="text"
+					onChange={formik.handleChange}
+					value={formik.values.name}
+					style={{ border:"1px solid gray", borderRadius: "10px", marginTop: "10px"}}
+				/>
+			</div>
+			<div style={{ display: "flex" , width: "90%"}}>
+			<label style={{marginTop: "10px",paddingRight:"20px"}}htmlFor="description">Description:</label>
+			<input
+				id="description"
+				name="description"
+				type="text"
+				onChange={formik.handleChange}
+				value={formik.values.description}
+				style={{ border:"1px solid gray", borderRadius: "10px", marginTop: "10px"}}
+			/>
+			</div>
+			<div style={{ display: "flex" , width: "90%"}}>
+			<label style={{marginTop: "10px",paddingRight:"20px"}}htmlFor="price">Price: </label>
+			<input
+				id="price"
+				name="price"
+				type="price"
+				onChange={formik.handleChange}
+				value={formik.values.email}
+				style={{ border:"1px solid gray", borderRadius: "10px", marginTop: "10px"}}
+				/>
+			</div>
+			<div style={{ display: "flex" , width: "90%"}}>
+			<label style={{marginTop: "10px",paddingRight:"20px"}}htmlFor="url">URL: </label>
+			<input
+				id="url"
+				name="url"
+				type="url"
+				onChange={formik.handleChange}
+				value={formik.values.email}
+				style={{ border:"1px solid gray", borderRadius: "10px", marginTop: "10px"}}
+			/>
+			</div>
+			<Button type="submit"  colorScheme="blue" mr={3} variant="ghost">Submit</Button>
+			</form>
+			  </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            {/* <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
-            </Button>
-            <Button variant='ghost' type="submit">Secondary Action</Button>
+            </Button> */}
+            {/* <Button variant="ghost" type="submit" onClick={handleSavePngButtonClick}> */}
+              {/* Save */}
+            {/* </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
-		);
-	}, [onClose,isOpen,onOpen]);
+    );
+  }, [onClose, isOpen, onOpen]);
 
 	
 

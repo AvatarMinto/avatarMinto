@@ -2,7 +2,7 @@ import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { number, string } from 'yup';
 
 const NftCard = (props:any) => {
-    const { product, id } = props;
+    const { product, id, type } = props;
   return (
     <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden" margin={"10px"}>
       <Image src={product} alt="NFT" />
@@ -22,7 +22,12 @@ const NftCard = (props:any) => {
           <Text fontWeight="bold" fontSize="xl">
            1.04 ETH
           </Text>
-          <Button colorScheme='blue' onClick={()=>alert("sold!!")}>Sell</Button>
+          {
+            type === "buy" ? 
+                <Button colorScheme='blue' onClick={()=>alert("It' Yours!!!")}>Buy</Button> :
+            <Button colorScheme='blue' onClick={()=>alert("sold!!")}>Sell</Button>
+          }
+          {/* <Button colorScheme='blue' onClick={()=>alert("sold!!")}>Sell</Button> */}
         </Box>
       </Box>
     </Box>

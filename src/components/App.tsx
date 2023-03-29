@@ -153,8 +153,7 @@ export const PeepsGenerator: React.FC = () => {
                 isFrameTransparent ? undefined : backgroundBasicColor
               }
             />
-          <form className="inputBox" style={{marginTop: "20px", justifyContent:"flex-start"}}>
-            {/* <label>Enter your name: */}
+          {/* <form className="inputBox" style={{marginTop: "20px", justifyContent:"flex-start"}}>
               <input
                 type="text" 
                 placeholder="Name"
@@ -162,7 +161,6 @@ export const PeepsGenerator: React.FC = () => {
                 style={{border: "1px solid gray", borderRadius: "1em", height:"3em", paddingLeft:"10px", marginRight:"10px"}}
                 onChange={(e) => setName(e.target.value)}
               />
-            {/* </label> */}
           </form>
           <form className="inputBox" style={{marginTop: "10px", justifyContent:"flex-start"}} >
             <input
@@ -173,7 +171,8 @@ export const PeepsGenerator: React.FC = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </form>
-            <button className="saveButton" style={{marginLeft:"80%"}}> Submit </button>
+            <button className="saveButton" style={{marginLeft:"80%"}}> Submit </button> */}
+            {/* <button className="saveButton" style={{marginLeft:"40%", marginTop:"20px"}}> Mint NFT </button> */}
           </div>
 
           <div style={{marginTop: '30vh'}}>
